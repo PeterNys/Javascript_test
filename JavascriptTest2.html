@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="javascriptTest2.css">    
+    <style>
+        .
+
+    </style>
+</head>
+    <body oncontextmenu="testContextmenu()">
+<input type="text" oninput="testOnInput()"/>
+<p onclick="testOnClick()" oninput="testOnInput()" ondblclick="testOnDblclick()" oncontextmenu="testContextmenu()" onkeydown="testOnKeyDown()" onmouseover="testMouseOver()" >asdlføkjaslødfjk asdløfjk</p>
+<p id="liste" ></p>
+<script>
+function testOnInput(){
+    document.getElementById("liste").innerHTML += '<li>oninput</li>';
+}
+function testOnClick(){
+    console.log("onclick");
+}
+function testOnDblclick(){
+    document.getElementById("liste").innerHTML += '<li>ondblclick</li>';
+} 
+</script>
+<script>
+function testContextmenu(){
+    document.getElementById("liste").innerHTML += '<li>OnContextMenu</li>';
+}
+function testOnKeyDown(){
+    document.getElementById("liste").innerHTML += '<li>onkeydown</li>';
+}
+function testMouseOver(){
+    document.getElementById("liste").innerHTML += '<li>MouseOver</li>';
+}
+</script>
+
+    </body>
+
+</html>

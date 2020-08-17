@@ -4,13 +4,23 @@
     <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
     </head>
     <body>
-        <h1 id="test">test test test test test</h1>
-        <h1 onclick="doTheThing()">tast tast tast tast tast</h1>
-        <script>
-            function doTheThing(){
-                document
+<p>Er dette et godt spørsmål?</p>
 
-            }
-        </script>
+<p id="wrong1" onclick="testFunction()">1) Ja det er det</p>
+<p id="correct" onclick="testFunction2()">2) Nei det er det ikke</p>
+<p id="wrong2" onclick="testFunction()"> 3) Kanskje</p>
+
+<p id="answer"></p>
+   <script>
+function testFunction(){
+    document.getElementById("answer").innerHTML = "Wrong answer"}
+    
+function testFunction2(){
+    document.getElementById("answer").innerHTML = "Correct!"
+}
+
+
+   </script>
+    
     </body>
 </html>
