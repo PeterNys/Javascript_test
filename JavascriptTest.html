@@ -6,21 +6,67 @@
     <body>
 <p>Er dette et godt spørsmål?</p>
 
-<p id="wrong1" onclick="testFunction()">1) Ja det er det</p>
+<button id="wrong1" onclick="testFunction()">1) Ja det er det</button>
 <p id="correct" onclick="testFunction2()">2) Nei det er det ikke</p>
 <p id="wrong2" onclick="testFunction()"> 3) Kanskje</p>
 
+<button id="makenewtableitem" onclick="makeNewItem()">Make new table item</button>
+
 <p id="answer"></p>
-   <script>
+
+
+<table><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr><div id="insertcode"></div></table>
+
+<button onclick="tell()">Tell!</button>
+<div id="info">Trykk på knappen</div>
+ 
+
+<script>
+
+function doSomething(x){
+    x.innerHTML='CCCCCCCC'
+}
+
+function makeItX(y){
+    y.innerHTML='x'
+}
+
+function makeNewItem(){
+    document.getElementById("insertcode").innerHTML += '<table><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr></table>';
+}
+
+
+
+var tallA = 0;
+var tekstA = 'TekstA ';
+console.log(tallA, tekstA);
+
+function tell(){
+    var tallB=0;
+    var tekstB = 'TekstB ';
+    
+    tallA++;
+    tallB++;
+    tekstA += '*';
+    tekstB += '*';
+
+    document.getElementById('info').innerHTML =
+    'TallA=' + tallA + '<br> TallB=' + tallB+ '<br> tekstA'+ tekstA + '<br> tekstB' + tekstB;
+    console.log(tallA,tallB,tekstA,tekstB);
+}
+
+//should not be relevant for this//
+
 function testFunction(){
-    document.getElementById("answer").innerHTML = "Wrong answer"}
+    document.getElementById("answer").innerHTML = "Wrong answer"
+}
     
 function testFunction2(){
     document.getElementById("answer").innerHTML = "Correct!"
 }
 
 
-   </script>
+ </script>  
     
     </body>
 </html>

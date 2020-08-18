@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
+    </head>
+    <body>
+
+<button id="makenewtableitem" onclick="makeNewItem()">Make new table item</button>
+
+
+<table><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr><div id="insertcode"></div></table>
+
+
+ 
+<script>
+
+function doSomething(x){
+    x.innerHTML='CCCCCCCC'
+}
+
+function makeItX(y){
+    y.innerHTML='x'
+}
+
+function makeNewItem(){
+    document.getElementById("insertcode").innerHTML += '<table><tr><td onmouseover="makeItX(this)">o</td><td onmouseover="makeItX(this)">o</td></tr></table>'
+}
+
+
+
+
+//should not be relevant for this//
+
+ </script>  
+    
+    </body>
+</html>
