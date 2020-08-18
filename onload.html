@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
+    </head>
+<body>
+<div id="putItHere" onload="myFunction()"></div>
+    <script>
+        document.getElementById('putItHere').innerHTML = '' + new Date().toTimeString();
+        
+        function myFunction(){
+            document.getElementById('putItHere').innerHTML = '' + new Date().toTimeString();
+        }
+    </script>
+
+</body>
+</html>
