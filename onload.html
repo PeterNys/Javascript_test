@@ -4,13 +4,19 @@
     <head>
     <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
     </head>
-<body>
-<div id="putItHere" onload="myFunction()"></div>
-    <script>
+<body onload="myFunction()">
+    <div id="putItHere" ></div>
+    <div id="putItHere2"></div>
+    <img src="atelier_firis___wallpaper_3440x1440_by_shadow2810_da4itmq.png">
+
+
+<script>
         document.getElementById('putItHere').innerHTML = '' + new Date().toTimeString();
+        console.log(7);
         
         function myFunction(){
-            document.getElementById('putItHere').innerHTML = '' + new Date().toTimeString();
+            document.getElementById('putItHere2').innerHTML = '' + new Date().toTimeString();
+            console.log(8);
         }
     </script>
 

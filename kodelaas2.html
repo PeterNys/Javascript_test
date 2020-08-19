@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
+    <style>
+        button{
+            width:10%; 
+            height:200px;
+        
+        }
+        #divMemoria{
+            width:100%;
+            height:100px;
+            background-color:lightblue;
+        }
+        .Outputdiv{
+            width:100px;
+            height:100px;
+            background-color:blue;
+            float:left;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="divMemoria" > </div>
+        <button id="b1" onclick='myFunction(1)'>1</button><button id="b2" onclick="myFunction(2)">2</button><button id="b3" onclick="myFunction(3)">3</button><br><button id ="b4" onclick="myFunction(4)">4</button><button id="b5" onclick="myFunction(5)">5</button><button id="b6" onclick="myFunction(6)">6</button><br><button id="b7" onclick="myFunction(7)">7</button><button id="b8" onclick="myFunction(8)">8</button><button id="b9" onclick="myFunction(9)">9</button>
+        
+        <div id="divMemoria2" > </div>
+        <div class="Outputdiv" onclick="myFunction2(this)">1</div>
+        <div class="Outputdiv">2</div>
+        <div class="Outputdiv">3</div>
+        <div class="Outputdiv">4</div>
+        <div class="Outputdiv">5</div>
+        <div class="Outputdiv">6</div>
+        <div class="Outputdiv">7</div>
+        <div class="Outputdiv">8</div>
+        <div class="Outputdiv">9</div>
+        
+        <script>
+        var memoria=''
+        var memoria2='s'
+        function myFunction(x){
+                memoria += x.innerHTML;
+                console.log(memoria);
+                document.getElementById("divMemoria").innerHTML=memoria;
+            }
+       
+        function myFunction2(x){
+            memoria2 += x;
+            console.log(memoria2+"mem2");
+            document.getElementById("divMemoria2").innerHTML=memoria2;
+        }
+        </script>
+    </body>
+</html>
