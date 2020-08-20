@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    </head>
+
+
+<body>
+
+<div id="resultat"></div>
+<div id="randomDiv"></div>
+
+<script>
+    
+   
+    var resultatDiv = document.getElementById('resultat');
+    var randomDiv = document.getElementById('randomDiv');
+    calculate();
+    function calculate(){
+        var tallA = parseInt(100+Math.floor(Math.random()*10));
+        var tallB = parseInt(100+Math.floor(Math.random()*10));
+        var divHeight = parseInt(100+Math.floor(Math.random()*1000));
+        var divWidth = parseInt(100+Math.floor(Math.random()*1000));
+
+        var sum= tallA+tallB;   
+        var difference= tallA-tallB;
+        var product= tallA*tallB;
+        var kvotient= tallA/tallB;
+        resultatDiv.innerHTML= '' +
+            tallA+ '+' + tallB + '=' + sum + '<br/>' +
+            tallA+ '-' + tallB + '=' + difference + '<br/>'+
+            tallA+ '*' + tallB + '=' + product + '<br/>' +
+            tallA+ '/' + tallB + '=' + kvotient;
+        var resultatRandom= '<div style="background-color:green; width: '+divWidth+ 'px; height: '+divHeight+'px;"> height:'+divHeight+'<br/>width:'+divWidth+ '</div>'
+        randomDiv.innerHTML=resultatRandom;
+        console.log(resultatRandom);
+    }
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    </head>
+
+<body>
+    <input id="text" type="text"/>
+    <h2 id="overskrift">Overskrift</h2>
+    <button onclick="doSomethingA(this)">A</button>
+    <button onclick="doSomethingB(this)">B</button>
+
+<script>
+    var textInput =document.getElementById('text');
+    var h2Element =document.getElementById('overskrift');
+
+    function doSomethingA(clickedElement){
+        textInput.style.backgroundColor = 'aquamarine';
+        h2Element.style.backgroundColor = 'aquamarine';
+        clickedElement.style.backgroundColor = 'aquamarine';
+
+        textInput.classList.add('round');
+        h2Element.classList.add('round');
+        clickedElement.classList.add('round');
+
+        textInput.style.color = 'red';
+        h2Element.style.color = 'red';
+
+        textInput.value = "Trykket på knapp A";
+    }    
+    function doSomethingB(clickedElement){
+        textInput.style.backgroundColor = 'blue';
+        h2Element.style.backgroundColor = 'blue';
+        clickedElement.style.backgroundColor = 'blue';
+
+        textInput.classList.remove('round');
+        h2Element.classList.remove('round');
+        clickedElement.classList.remove('round');
+
+        textInput.style.fontWeight = 'bolder';
+        h2Element.style.fontWeight = 'bolder';
+        clickedElement.style.fontWeight = 'bolder';
+
+        textInput.style.color = 'whitesmoke';
+        h2Element.style.color = 'whitesmoke';
+        clickedElement.style.color = 'whitesmoke';
+    }
+
+
+</script>
+
+</body>
+</html>

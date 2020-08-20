@@ -6,7 +6,7 @@
 
     <body>
         <input id="sizeSlider" type="range" min="100" max="500" step="10" oninput="showDiv()" />
-        <input id="borderSlider" type="range" min="0" max="20" step="1" oninput="showDiv()" />
+        <input id="borderSlider" type="range" min="0" max="200" step="1" value="20" oninput="showDiv()" />
 <br /><input id="textInput" type="text" oninput="showDiv()" value="endre teksten!" />
 
 <select id="colorChooser" onchange="showDiv()">
@@ -18,7 +18,7 @@
 <select id="borderChooser" onchange="showDiv()">
     <option value="black">Black color</option>
     <option value="grey">Grey color</option>
-    <option value="; border:none">No border</option>
+    <option value="none">No border</option>
 </select>
 
 <div id="resultat"></div>
@@ -44,7 +44,7 @@ function showDiv() {
     var backgroundColor = 'background-color: ' + color + ';';
     var width = 'width: '+ size + 'px;';
     var height = 'height: ' + size + 'px; ';
-    var borderStyle = 'border-style:solid; border-width: 5px; border-radius:'+ borderradius+'px;'+' border-color:'+ border+';'; 
+    var borderStyle = 'border:solid 5px '+ border+'; border-radius:'+borderradius+'px; '; 
     var style = 'style="' + backgroundColor + width + height + borderStyle+'"';
     resultatDiv.innerHTML = '<div ' + style + '>' + text + '</div>';
     resultatHtmlDiv.innerText = resultatDiv.innerHTML;

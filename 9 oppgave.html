@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .stilig {
+                background-color: blueviolet;
+            }
+        
+        </style>
+    </head>
+
+<body>
+<div id="bla1">bla bla bla</div>
+<input id="chk" type="checkbox" onchange="toggleStyle()" />
+
+
+
+
+<script>
+function toggleStyle(){
+    var isChecked = document.getElementById('chk').checked;
+    console.log(isChecked);
+    document.getElementById('bla').classList.toggle('stilig', isChecked);
+}
+
+
+</script>
+
+</body>
+</html>
