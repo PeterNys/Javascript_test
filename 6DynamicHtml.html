@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
+    
     </head>
 
     <body>
         <input id="sizeSlider" type="range" min="100" max="500" step="10" oninput="showDiv()" />
+        <input id="borderSlider" type="range" min="0" max="20" step="1" oninput="showDiv()" />
 <br /><input id="textInput" type="text" oninput="showDiv()" value="endre teksten!" />
 
 <select id="colorChooser" onchange="showDiv()">
     <option value="red">Red color</option>
     <option selected value="green">Green color</option>
     <option value="blue">Blue color</option>
+</select>
+
+<select id="borderChooser" onchange="showDiv()">
+    <option value="black">Black color</option>
+    <option value="grey">Grey color</option>
+    <option value="; border:none">No border</option>
 </select>
 
 <div id="resultat"></div>
@@ -22,19 +29,23 @@ var resultatDiv = document.getElementById('resultat');
 var resultatHtmlDiv = document.getElementById('resultatHtml');
 var sizeSlider = document.getElementById('sizeSlider');
 var textInput = document.getElementById('textInput');
-var colorChooser = document.getElementById('colorChooser')    
-
+var colorChooser = document.getElementById('colorChooser');    
+var borderChooser = document.getElementById('borderChooser');
+var borderRadius = document.getElementById('borderSlider');
 showDiv();
 
 function showDiv() {
     var size = sizeSlider.value;
     var text = textInput.value;
     var color = colorChooser.value;
+    var border = borderChooser.value;
+    var borderradius = borderRadius.value;
 
     var backgroundColor = 'background-color: ' + color + ';';
     var width = 'width: '+ size + 'px;';
     var height = 'height: ' + size + 'px; ';
-    var style = 'style="' + backgroundColor + width + height + '"'
+    var borderStyle = 'border-style:solid; border-width: 5px; border-radius:'+ borderradius+'px;'+' border-color:'+ border+';'; 
+    var style = 'style="' + backgroundColor + width + height + borderStyle+'"';
     resultatDiv.innerHTML = '<div ' + style + '>' + text + '</div>';
     resultatHtmlDiv.innerText = resultatDiv.innerHTML;
 }

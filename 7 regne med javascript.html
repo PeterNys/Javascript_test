@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    </head>
+
+
+<body>
+    <input id="tallA" type="range" min="1" max="100" step="1" oninput="calculate()" value="2"/>
+    <input id="tallB" type="range" min="1" max="100" step="1" oninput="calculate()" value="2"/>
+    
+    <div id="resultat"></div>
+    
+    <!--Oppgave starter her-->
+    <input id="sideH" type="range" min="1" max="1000" step="1" oninput="calculate2()" value="2"/>
+    <input id="sideV" type="range" min="1" max="1000" step="1" oninput="calculate2()" value="2"/>
+    <div id="resultat2"></div>
+    
+    
+    <script>
+        var resultatDiv = document.getElementById('resultat');
+        var tallAInput = document.getElementById('tallA');
+        var tallBInput = document.getElementById('tallB');
+
+        var resultatDiv2 = document.getElementById('resultat2');
+        var sideHInput = document.getElementById('sideH');
+        var sideVInput = document.getElementById('sideV');
+
+
+        calculate();
+        calculate2();
+
+        function calculate() {
+            var tallA = parseInt(tallAInput.value);
+            var tallB = parseInt(tallBInput.value);
+            var sum = tallA + tallB;
+            var differences = tallA - tallB;
+            var product = tallA * tallB;
+            var kvotient = tallA / tallB;
+            var resultat ='' + tallA + '+' + tallB + '='+ sum + '<br/>'+ tallA +'-'+tallB+ '='+ differences+ '<br/>' + tallA+ '*' + tallB+'='+product+'<br/>'+tallA+'/'+tallB+'='+kvotient;
+            resultatDiv.innerHTML = resultat;
+            console.log(resultat);
+        }
+
+        function calculate2(){
+            var sideH = parseInt(sideHInput.value);
+            var sideV = parseInt(sideVInput.value);
+            var area = sideH*sideV;
+            var perimeter = 2*sideH+2*sideV;
+            var resultat = '<div style="background-color:blue; width:'+ sideH + 'px; height:'+ sideV+'px; color:White; font-size:50px;"> Area:'+ area+ '</br> perimeter:'+perimeter+'</div>';
+            resultatDiv2.innerHTML= resultat;
+            console.log(resultat);
+        }
+    </script>
+    
+</body>
+        
+</html>
