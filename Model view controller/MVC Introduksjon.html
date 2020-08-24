@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            font-size: 300%;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body id="bodyid">
+    <div id="app"></div>
+    
+
+    <script>
+        // model
+        var points = 0;
+        var pointsPerClick = 1;
+        var smileyIndex = 0;
+        var hasCheated = false;
+        var cheat = '';
+        var cheatLevel= 0
+        var superCheat = false;
+
+        // controller
+        function doClick() {
+            points += pointsPerClick;
+            smileyIndex = 1 - smileyIndex;
+            updateView();
+        }
+
+        function buyUpgrade() {
+            if (points < 10) return;
+            points -= 10;
+            pointsPerClick++;
+            updateView();
+        }
+        
+        function cheatButton(){
+            points=points*10;
+            pointsPerClick=pointsPerClick*10;
+            hasCheated = true;
+            cheatLevel++;
+            if (cheatLevel>4){ superCheat=true};
+            console.log(cheatLevel);
+            updateView();
+        }
+
+        // view
+        updateView();
+        function updateView() {
+            var smiley = smileyIndex == 0 ? '😀' : '😁';
+            if (hasCheated) {smiley= smileyIndex == 0 ? '😡' : '👿';cheat='<div id="cheatDiv" style="color:red; background-color:black">You cheater!</div>'};
+            if (superCheat) {smiley= smileyIndex == 0 ? '💢👺💥' : '💢💀💥'; cheat='<div id="cheatDiv" style="height:100vh; width:100vh; color:red; background-color:black">You cheater!</div>'; document.getElementById('bodyid').innerHTML=`<body style ="background-color:black"`;}
+            
+            document.getElementById('app').innerHTML = `
+                <div id="image" onclick="doClick()">${smiley}</div>
+                <div id="pointsInfo">${points}</div>
+                <button onclick="buyUpgrade()">Kjøp oppgradering (10 poeng)</button>
+                <button onclick="cheatButton()">Ikke juks</button><br/>
+                ${cheat}
+                
+            `;
+            
+        }
+    </script>
+</body>
+
+</html>
