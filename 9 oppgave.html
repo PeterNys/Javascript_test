@@ -5,13 +5,40 @@
             .stilig {
                 background-color: blueviolet;
             }
-        
+            .stilig2{
+                background-color:yellow;
+            }
+            .stilig3{
+                background-color:green;
+            }
+            .stilig4{
+                background-color:purple;
+            }
+            .stilig5{
+                background-color:red;
+            }
+           
         </style>
     </head>
 
 <body>
-<div id="bla1">bla bla bla</div>
-<input id="chk" type="checkbox" onchange="toggleStyle()" />
+<div id="bla">
+    <input id="chk" type="checkbox" onchange="toggleStyle()" />
+    bla bla bla</div>
+<div id="bla2">
+    <input id="chk2" type="checkbox" onchange="toggleStyle()" />
+    bla bla bla</div>
+<div id="bla3">
+    <input id="chk3" type="checkbox" onchange="toggleStyle()" />
+    bla bla bla</div>
+<div id="bla4">
+    <input id="chk4" type="checkbox" onchange="toggleStyle()" />
+    bla bla bla</div>
+<div id="bla5">
+    <input id="chk5" type="checkbox" onchange="toggleStyle()" />
+        bla bla bla</div>
+
+
 
 
 
@@ -19,10 +46,20 @@
 <script>
 function toggleStyle(){
     var isChecked = document.getElementById('chk').checked;
+   
+    
     console.log(isChecked);
     document.getElementById('bla').classList.toggle('stilig', isChecked);
+    document.getElementById('bla2').classList.toggle('stilig2', document.getElementById('chk2').checked);
+    document.getElementById('bla3').classList.toggle('stilig3', document.getElementById('chk3').checked);
+    document.getElementById('bla4').classList.toggle('stilig4', document.getElementById('chk4').checked);
+    document.getElementById('bla5').classList.toggle('stilig5', document.getElementById('chk5').checked);
 }
+function selectStyle(){
+    var styleColor = document.getElementById('selectButton').value;
+    console.log(styleColor);
 
+}
 
 </script>
 

@@ -21,6 +21,7 @@
         var tallB = parseInt(100+Math.floor(Math.random()*10));
         var divHeight = parseInt(100+Math.floor(Math.random()*1000));
         var divWidth = parseInt(100+Math.floor(Math.random()*1000));
+        var divBorder = parseInt(1+Math.floor(Math.random()*10));
 
         var sum= tallA+tallB;   
         var difference= tallA-tallB;
@@ -31,7 +32,7 @@
             tallA+ '-' + tallB + '=' + difference + '<br/>'+
             tallA+ '*' + tallB + '=' + product + '<br/>' +
             tallA+ '/' + tallB + '=' + kvotient;
-        var resultatRandom= '<div style="background-color:green; width: '+divWidth+ 'px; height: '+divHeight+'px;"> height:'+divHeight+'<br/>width:'+divWidth+ '</div>'
+        var resultatRandom= '<div style="background-color:green; border: solid black '+divBorder+'px; width: '+divWidth+ 'px; height: '+divHeight+'px;"> height:'+divHeight+'<br/>width:'+divWidth+ '</div>'
         randomDiv.innerHTML=resultatRandom;
         console.log(resultatRandom);
     }
