@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <style>
+    <style id = "styler">
         div {
             font-size: 300%;
             user-select: none;
@@ -12,7 +12,7 @@
     </style>
 </head>
 
-<body id="bodyid">
+<body>
     <div id="app"></div>
     
 
@@ -21,10 +21,10 @@
         var points = 0;
         var pointsPerClick = 1;
         var smileyIndex = 0;
-        var hasCheated = false;
+        var smiley = smileyIndex == 0 ? '😀' : '😁';
         var cheat = '';
         var cheatLevel= 0
-        var superCheat = false;
+        
 
         // controller
         function doClick() {
@@ -43,9 +43,22 @@
         function cheatButton(){
             points=points*10;
             pointsPerClick=pointsPerClick*10;
-            hasCheated = true;
+            cheat='<div id="cheatDiv" style="color:red; background-color:black">You cheater!</div>';
+            smiley= smileyIndex == 0 ? '😡' : '👿'
             cheatLevel++;
-            if (cheatLevel>4){ superCheat=true};
+            if (cheatLevel>4){
+                    cheat='<div id="cheatDiv" style="height:100vh; width:100vh; color:red; background-color:black">You cheater!</div>';
+                    smiley= smileyIndex == 0 ? '💢👺💥' : '💢💀💥'; 
+                    document.getElementById('styler').innerHTML = ` 
+            *   {
+                background-color:black;
+        }
+             div {
+            font-size: 300%;
+            user-select: none;
+        }`;
+                    };
+                    
             console.log(cheatLevel);
             updateView();
         }
@@ -53,9 +66,7 @@
         // view
         updateView();
         function updateView() {
-            var smiley = smileyIndex == 0 ? '😀' : '😁';
-            if (hasCheated) {smiley= smileyIndex == 0 ? '😡' : '👿';cheat='<div id="cheatDiv" style="color:red; background-color:black">You cheater!</div>'};
-            if (superCheat) {smiley= smileyIndex == 0 ? '💢👺💥' : '💢💀💥'; cheat='<div id="cheatDiv" style="height:100vh; width:100vh; color:red; background-color:black">You cheater!</div>'; document.getElementById('bodyid').innerHTML=`<body style ="background-color:black"`;}
+            
             
             document.getElementById('app').innerHTML = `
                 <div id="image" onclick="doClick()">${smiley}</div>

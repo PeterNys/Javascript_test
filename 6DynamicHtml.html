@@ -46,8 +46,9 @@ function showDiv() {
     var height = 'height: ' + size + 'px; ';
     var borderStyle = 'border:solid 5px '+ border+'; border-radius:'+borderradius+'px; '; 
     var style = 'style="' + backgroundColor + width + height + borderStyle+'"';
-    resultatDiv.innerHTML = '<div ' + style + '>' + text + '</div>';
+    resultatDiv.innerHTML = '<div ' + style + '>' + text + '</div>'; 
     resultatHtmlDiv.innerText = resultatDiv.innerHTML;
+    console.log(resultatDiv.innerHTML);
 }
 
 
