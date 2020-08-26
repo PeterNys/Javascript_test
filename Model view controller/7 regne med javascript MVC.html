@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    </head>
+
+
+<body>
+    
+    <div id= "app"></div>
+    
+    
+    
+    
+    
+    <script>
+        
+        
+    
+    // model
+    var resultat;
+    var resultatDiv;
+    var tallAInput;
+    var tallBInput; 
+    
+    var resultatDiv2;
+    var sideHInput;
+    var sideVInput;
+    var tallA;
+    var tallB;
+
+    var sum;
+    var differences = tallA - tallB;
+    var product = tallA * tallB;
+    var kvotient = tallA / tallB;
+
+    var sideH;
+    var sideV;
+    var area = sideH*sideV;
+    var perimeter = 2*sideH+2*sideV;
+    
+    // view 
+    updateView();
+    function updateView(){ 
+    document.getElementById('app').innerHTML= ` 
+        
+    <input id="tallA" type="range" min="1" max="100" step="1" onload="defineValueA(this)"; oninput="defineValueA(this); calculate();" value="2"/>
+    <input id="tallB" type="range" min="1" max="100" step="1" onload="defineValueB(this)"; oninput="defineValueB(this); calculate();" value="2"/>
+    
+    <div style="background-color:blue; width:'+ ${sideH} + 'px; height:'+ ${sideV}+'px; color:White; font-size:50px;"> Area:'+ ${area}+ '</br> perimeter:'+${perimeter}+'</div>';</div>
+    <div>'' ${tallA} + ${tallB} = ${sum} <br/> ${tallA} -${tallB} = ${differences} <br/> ${tallA} * ${tallB}=${product}<br/>${tallA}/${tallB}=${kvotient};</div>
+    
+    <input id="sideH" type="range" min="1" max="1000" step="1" onload="defineValueH(this)"; oninput="calculate2()" value="2"/>
+    <input id="sideV" type="range" min="1" max="1000" step="1" onload="definevalueV(this)"; oninput="calculate2()" value="2"/>
+    
+
+`
+
+        }
+    // controller 
+        calculate();
+        calculate2();
+
+        function defineValueA(thisDiv) {
+            tallA = parseInt(thisDiv.value);
+            console.log(tallA + " /this is tallA variable");
+            updateView();
+        }
+        function defineValueB(thisDiv){
+            tallB = parseInt(thisDiv.value);
+            updateView();
+            console.log(tallB + " /this is tallB variable");
+        }
+        function defineValueV(thisDiv){
+            sideV = thisDiv.value;
+            updateView();
+        }
+        function defineValueH(thisDiv){
+            sideH = thisDiv.value;
+            updateView();
+        }
+        function calculate() {
+            sum = tallA+tallB;
+            differences= tallA-tallB;
+            product= tallA*tallB;
+            kvotient= tallA/tallB;
+            console.log(sum + "  "+differences + "  "+ product+ "  "+ kvotient)
+            updateView();
+        }
+
+        function calculate2(){
+            resultatDiv2 = document.getElementById('resultat2');
+            sideHInput = document.getElementById('sideH');
+            sideVInput = document.getElementById('sideV');
+            
+            resultat = 
+            resultatDiv2.innerHTML= resultat;
+            console.log(resultat);
+        }
+
+
+    </script>
+    
+</body>
+        
+</html>
