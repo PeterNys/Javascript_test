@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    </head>
+    <body>
+        
+        <div id="app"></div>
+
+        
+
+        
+        <script>
+
+            // model
+            let divcolor ='';
+
+            // view
+            updateView();
+            function updateView(){
+                document.getElementById('app').innerHTML=`
+                <select onchange="setColor(this)" name="color" id="color">
+                    <option value="black">black</option>
+                    <option value="grey">grey</option>
+                    <option value="crimson">vermillion</option>
+                    <option value="green">green</option>
+                    <option value="lightblue">light blue</option>
+                </select>
+                <div style="background-color:${divcolor}; width:500px; height:500px;"></div>
+                `
+
+            }
+            // controller
+            function setColor(xpert){
+                divcolor=xpert.value;
+                console.log("test test test");
+                console.log(divcolor);
+                updateView();
+            }
+
+        </script>
+
+
+
+
+    </body>
+</html>

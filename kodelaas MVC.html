@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="javascriptTest.css">    
+    <style>
+        button{
+            width:10%; 
+            height:200px;
+        
+        }
+        #divMemoria{
+            width:100%;
+            height:100px;
+            background-color:lightblue;
+            font-size: 50px;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="app"></div>
+
+
+        <script>
+            // model
+            let memoria='';
+            let solution=1234567;
+            let correctsolutiontext='';
+
+            // view
+            updateView()
+            function updateView(){
+                document.getElementById("app").innerHTML=`
+                <div id="divMemoria" >${memoria} </div>
+                <button id="b1" onclick='myFunction(1)'>1</button><button id="b2" onclick="myFunction(2)">2</button><button id="b3" onclick="myFunction(3)">3</button><br><button id ="b4" onclick="myFunction(4)">4</button><button id="b5" onclick="myFunction(5)">5</button><button id="b6" onclick="myFunction(6)">6</button><br><button id="b7" onclick="myFunction(7)">7</button><button id="b8" onclick="myFunction(8)">8</button><button id="b9" onclick="myFunction(9)">9</button>
+                <div style="font-size:200px; color: black; background-color:red;">${correctsolutiontext}</div>
+                `
+            }
+
+            // controller
+            function myFunction(x){
+                memoria += x
+                if(memoria == solution){
+                    
+                    correctsolutiontext= "Åpen";
+                    memoria = '';
+
+                }
+                else{correctsolutiontext='';
+                
+                };
+                
+                updateView();
+            }
+
+        </script>
+        
+       
+    </body>
+</html>

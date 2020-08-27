@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Kalkulator</title>
     <style type="text/css">
-        div {
+        .buttons {
             float: left;
             background-color: beige;
             width: 50px;
@@ -25,9 +25,10 @@
                 text-align: right;
             }
 
-            /* div.firstInRow {
+            div.firstInRow {
                 clear: left;
-            } */
+                background-color:brown;
+            } 
     </style>
 </head>
 <body>
@@ -36,34 +37,33 @@
     
     
     // <!-- model -->
-    var memoria;
-    var resultBox;
+    var resultBox='';
 
     // <!-- view -->
         updateView();
         function updateView(){
             document.getElementById('app').innerHTML=`
-            <div id="resultBox" class="resultBox" id="screen"></div>
+            <div class="resultBox buttons">${resultBox}</div>
 
-            [<div class="firstInRow" onclick="addCharacter(7)">7</div>
-            <div onclick="addCharacter(8)">8</div>
-            <div onclick="addCharacter(9)">9</div>
-            <div onclick="addCharacter('÷')">÷</div>
+            [<div class="firstInRow buttons" onclick="addCharacter(7)">7</div>
+            <div class="buttons" onclick="addCharacter(8)">8</div>
+            <div class="buttons" onclick="addCharacter(9)">9</div>
+            <div class="buttons" onclick="addCharacter('/')">÷</div>
 
-            <div class="firstInRow" onclick="addCharacter(4)">4</div>
-            <div onclick="addCharacter(5)">5</div>
-            <div onclick="addCharacter(6)">6</div>
-            <div onclick="addCharacter('×')">×</div>
+            <div class="firstInRow buttons" onclick="addCharacter(4)">4</div>
+            <div class="buttons" onclick="addCharacter(5)">5</div>
+            <div class="buttons" onclick="addCharacter(6)">6</div>
+            <div class="buttons" onclick="addCharacter('*')">x</div>
 
-            <div class="firstInRow" onclick="addCharacter(1)">1</div>
-            <div onclick="addCharacter(2)">2</div>
-            <div onclick="addCharacter(3)">3</div>
-            <div onclick="addCharacter('-')">-</div>
+            <div class="firstInRow buttons" onclick="addCharacter(1)">1</div>
+            <div class="buttons" onclick="addCharacter(2)">2</div>
+            <div class="buttons" onclick="addCharacter(3)">3</div>
+            <div class="buttons" onclick="addCharacter('-')">-</div>
 
-            <div class="firstInRow" onclick="addCharacter(0)">0</div>
-            <div onclick="clearResult();">C</div>
-            <div onclick="calculate()">=</div>
-            <div onclick="addCharacter('+')">+</div>]
+            <div class="firstInRow buttons" onclick="addCharacter(0)">0</div>
+            <div class="buttons" onclick="clearResult();">C</div>
+            <div class="buttons" onclick="calculate()">=</div>
+            <div class="buttons" onclick="addCharacter('+')">+</div>]
             
             
             
@@ -73,18 +73,19 @@
 
     // controller
     function addCharacter(x) {
-        resultBox.innerHTML += x;
+        resultBox += x;
+        console.log(resultBox)
+        updateView();
     }
 
     function calculate() {
-        var calculation = resultBox
-            .innerHTML
-            .replace('×', '*')
-            .replace('÷', '/');
-        resultBox.innerHTML = eval(calculation);
+        var calculation = resultBox;
+        resultBox = eval(calculation);
+        updateView();
     }
     function clearResult() {
-        resultBox.innerHTML = '';
+        resultBox = '';
+        updateView();
     }
 </script>
     

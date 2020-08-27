@@ -1,0 +1,83 @@
+﻿﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="inputs"></div>
+    
+    
+    <script>
+            // model
+        var infoDiv = '';
+        var txtDiv1 = '';
+        var txtDiv2 = '';
+        var txtDiv3 = '';
+        let name1 = "Per";
+        let name2 = "Aål";
+        let name3 = "Espen";
+        let sortDiv = '';
+    
+            
+            // view
+        updateView()
+        inputView()
+        findFirst()
+        function updateView(){
+
+            if (name1 == name2) infoDiv += 'Tekst 1 og 2 er like<br/>';
+            if (name1 != name2) infoDiv += '<del>Tekst 1 og 2 er like</del><br/>';
+            if (name1 == name3) infoDiv += 'Tekst 1 og 3 er like<br/>';
+            if (name1 != name3) infoDiv += '<del>Tekst 1 og 3 er like</del><br/>';
+            if (name3 == name2) infoDiv += 'Tekst 2 og 3 er like<br/>';
+            if (name3 != name2) infoDiv += '<del>Tekst 2 og 3 er like</del><br/>';
+            document.getElementById('app').innerHTML= `
+
+            
+            <p>Ferdighet 9b - Valgsetninger - Sammenligne to tekster</p>
+            <div id="info">${infoDiv}</div>
+            <div id="sort">Om vi sorterer de tre tekstene, er denne den første:<br/>${sortDiv}</div>
+            <p>Endre på tekstene! (Prøv også å fylle ut tall: 11, 101, 102)</p>
+            
+            
+            `}
+        function inputView(){document.getElementById("inputs").innerHTML= `
+            <input type="text" id="txt1" oninput="findFirst()" value="${name1}" />${txtDiv1}<br />
+            <input type="text" id="txt2" oninput="findFirst()" value="${name2}" />${txtDiv2}<br />
+            <input type="text" id="txt3" oninput="findFirst()" value="${name3}" />${txtDiv3}<br />
+        
+        `
+
+        }
+        
+
+            // controller
+
+
+     
+
+        
+
+        function findFirst() {
+            name1 = document.getElementById("txt1").value;
+            name2 = document.getElementById("txt2").value;
+            name3 = document.getElementById("txt3").value;
+           
+            infoDiv = '';
+            sortDiv = '';
+
+            if (name1 <= name2) {
+                if (name3 <= name1) infoDiv += name3;
+                else sortDiv += name1;
+            } else {
+                if (name3 <= name2) infoDiv += name3;
+                else sortDiv += name2;
+            }
+        updateView();
+        }
+    </script>
+</body>
+</html>
