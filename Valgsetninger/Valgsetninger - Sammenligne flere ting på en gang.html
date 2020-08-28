@@ -5,7 +5,9 @@
     </head>
     <body>
         
+        <div id="app2"></div>
         <div id="app"></div>
+        
 
         
 
@@ -13,12 +15,21 @@
         <script>
 
             // model
-            let divcolor ='';
+            let divcolor ='black';
+            let txtcolor = 'white';
 
             // view
             updateView();
+            updateView2();
             function updateView(){
                 document.getElementById('app').innerHTML=`
+                <div style="background-color:${divcolor}; color:${txtcolor}; width:500px; height:500px;">Some random text in here</div>
+               
+                `
+
+            }
+            function updateView2(){
+                document.getElementById('app2').innerHTML=`
                 <select onchange="setColor(this)" name="color" id="color">
                     <option value="black">black</option>
                     <option value="grey">grey</option>
@@ -26,13 +37,16 @@
                     <option value="green">green</option>
                     <option value="lightblue">light blue</option>
                 </select>
-                <div style="background-color:${divcolor}; width:500px; height:500px;"></div>
+              
                 `
 
             }
             // controller
             function setColor(xpert){
                 divcolor=xpert.value;
+                if(divcolor=='black'||divcolor=='grey'){
+                    txtcolor='white';
+                }else{txtcolor='black'}
                 console.log("test test test");
                 console.log(divcolor);
                 updateView();

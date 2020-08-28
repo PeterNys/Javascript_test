@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="sliderDiv"></div>
+
+
+
+    <script>
+        // model
+        let bunn='';
+        let fyll='';
+        let pizzasize='';
+        var infoDiv = 'Gjør ett valg på hver linje:';
+        let falsevar = '';
+        // view
+        updateView();
+        updateSlider();
+        function updateView(){
+            document.getElementById("app").innerHTML=`
+            <p>Ferdighet 9f - Valgsetninger - Sammenligne flere ting på en gang (og og eller sammen)</p>
+            <h3>Pizza-bestilling</h3>
+            <div id="info" style="padding-bottom: 20px;">${infoDiv}</div>        
+            `
+
+        }
+        info();
+        function updateSlider(){
+            document.getElementById("sliderDiv").innerHTML=`
+            Bunn: <input id="tykkBunn" type="radio" name="bunn" onchange="info(), uncheckBunn('bunn', this)" />Tykk
+            <input id="tynnBunn" type="radio" name="bunn" onchange="info(), uncheckBunn('bunn', this)" />Tynn <br />
+
+            Fyll: <input id="fyllTaco" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Taco
+            <input id="fyllKylling" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Kylling
+            <input id="fyllPepperoni" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Pepperoni<br />
+
+            Størrelse: <input id="stor" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Stor
+            <input id="middels" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Middels
+            <input id="liten" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Liten<br />
+
+            <button id="bestill" disabled=${false} onclick="alert('Bestilt!');">Bestill</button>
+         
+            `
+        }
+        var btnBestill = document.getElementById('bestill');
+        
+     
+        
+        // controller
+        function uncheckBunn(type, thisid){
+            if (type=='bunn'){
+                bunn=thisid.id;
+            }
+            if (type=='fyll'){
+                fyll=thisid.id;
+            }
+            if (type=='pizzasize'){
+                pizzasize= thisid.id;
+            }
+            console.log(bunn, fyll, pizzasize);
+        }
+       
+        
+        function info() {
+
+            if ((bunn=="tynnBunn" || bunn=="tykkBunn") &&
+                (fyll=="fyllTaco" || fyll=="fyllKylling" || fyll=="fyllPepperoni") &&
+                (pizzasize=="stor" || pizzasize=="middels" || pizzasize=="liten")) {
+                infoDiv = 'Du har fylt ut alt og er klar til å bestille!';
+                btnBestill.disabled = false;
+                
+            } else {
+                infoDiv = 'Du har ikke valgt:';
+                //if (bunnTykk.checked || bunnTynn.checked) {                    
+                //} else {
+                //    infoDiv.innerHTML += '<li>bunn</li>';
+                //}
+                
+                if (bunn!="tykkBunn" && bunn!="tynnBunn") {
+                    infoDiv += '<li>bunn</li>';
+                    
+                }
+                if (fyll!="fyllTaco" && fyll!="fyllKylling" && fyll!="fyllPepperoni") {
+                    infoDiv += '<li>fyll</li>';
+                    
+                }
+                if (pizzasize!="stor" && pizzasize!="middels" && pizzasize!="liten") {
+                    infoDiv += '<li>størrelse</li>';
+                    
+                }
+            }
+            updateView();
+        }
+    </script>
+
+
+</body>
+</html>
