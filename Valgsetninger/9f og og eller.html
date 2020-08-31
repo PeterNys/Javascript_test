@@ -9,6 +9,7 @@
 <body>
     <div id="app"></div>
     <div id="sliderDiv"></div>
+    <div id="bestillbutton"></div>
 
 
 
@@ -18,7 +19,8 @@
         let fyll='';
         let pizzasize='';
         var infoDiv = 'Gjør ett valg på hver linje:';
-        let falsevar = '';
+        let disabledvar = 'disabled';
+        let rundhetvar = '';
         // view
         updateView();
         updateSlider();
@@ -26,29 +28,32 @@
             document.getElementById("app").innerHTML=`
             <p>Ferdighet 9f - Valgsetninger - Sammenligne flere ting på en gang (og og eller sammen)</p>
             <h3>Pizza-bestilling</h3>
-            <div id="info" style="padding-bottom: 20px;">${infoDiv}</div>        
+            <div id="info" style="padding-bottom: 20px;">${infoDiv}</div>      
+
+            <button id="bestill" ${disabledvar} onclick="alert('Bestilt!');">Bestill</button>  
             `
 
         }
         info();
         function updateSlider(){
             document.getElementById("sliderDiv").innerHTML=`
-            Bunn: <input id="tykkBunn" type="radio" name="bunn" onchange="info(), uncheckBunn('bunn', this)" />Tykk
-            <input id="tynnBunn" type="radio" name="bunn" onchange="info(), uncheckBunn('bunn', this)" />Tynn <br />
+            Bunn: <input id="tykkBunn" type="radio" name="bunn" onchange="uncheckBunn('bunn', this),info()" />Tykk
+            <input id="tynnBunn" type="radio" name="bunn" onchange=" uncheckBunn('bunn', this), info()" />Tynn <br />
 
-            Fyll: <input id="fyllTaco" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Taco
-            <input id="fyllKylling" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Kylling
-            <input id="fyllPepperoni" type="radio" name="fyll" onchange="info(), uncheckBunn('fyll', this)" />Pepperoni<br />
+            Fyll: <input id="fyllTaco" type="radio" name="fyll" onchange=" uncheckBunn('fyll', this),info()" />Taco
+            <input id="fyllKylling" type="radio" name="fyll" onchange="uncheckBunn('fyll', this),info()" />Kylling
+            <input id="fyllPepperoni" type="radio" name="fyll" onchange="uncheckBunn('fyll', this),info()" />Pepperoni<br />
+            <input id="fyllAnanas" type="radio" name="fyll" onchange="uncheckBunn('fyll', this),info()" />Ananas<br />
 
-            Størrelse: <input id="stor" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Stor
-            <input id="middels" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Middels
-            <input id="liten" type="radio" name="str" onchange="info(), uncheckBunn('pizzasize', this)" />Liten<br />
-
-            <button id="bestill" disabled=${false} onclick="alert('Bestilt!');">Bestill</button>
-         
+            Størrelse: <input id="stor" type="radio" name="str" onchange="uncheckBunn('pizzasize', this),info()" />Stor
+            <input id="middels" type="radio" name="str" onchange="uncheckBunn('pizzasize', this),info()" />Middels
+            <input id="liten" type="radio" name="str" onchange="uncheckBunn('pizzasize', this),info()" />Liten<br />
+            
+            Rundhet: <input id="rund" type="radio" name="rnd" onchange="uncheckBunn('rundhet', this),info()" />Rund
+            <input id="firkantet" type="radio" name="rnd" onchange="uncheckBunn('rundhet', this),info()" />Firkantet
             `
         }
-        var btnBestill = document.getElementById('bestill');
+      
         
      
         
@@ -63,6 +68,10 @@
             if (type=='pizzasize'){
                 pizzasize= thisid.id;
             }
+            if (type=='rundhet'){
+                rundhetvar= thisid.id;
+            }
+            updateView();
             console.log(bunn, fyll, pizzasize);
         }
        
@@ -70,10 +79,13 @@
         function info() {
 
             if ((bunn=="tynnBunn" || bunn=="tykkBunn") &&
-                (fyll=="fyllTaco" || fyll=="fyllKylling" || fyll=="fyllPepperoni") &&
-                (pizzasize=="stor" || pizzasize=="middels" || pizzasize=="liten")) {
+                (fyll=="fyllTaco" || fyll=="fyllKylling" || fyll=="fyllPepperoni"||fyll=="fyllAnanas") &&
+                (pizzasize=="stor" || pizzasize=="middels" || pizzasize=="liten") &&
+                (rundhetvar=="rund"||rundhetvar=="firkantet")) {
                 infoDiv = 'Du har fylt ut alt og er klar til å bestille!';
-                btnBestill.disabled = false;
+                disabledvar = '';
+                console.log("disabledvar ="+ disabledvar);
+                updateView();
                 
             } else {
                 infoDiv = 'Du har ikke valgt:';
@@ -84,16 +96,26 @@
                 
                 if (bunn!="tykkBunn" && bunn!="tynnBunn") {
                     infoDiv += '<li>bunn</li>';
-                    
+                    console.log(infoDiv);
+                    updateView(); 
                 }
-                if (fyll!="fyllTaco" && fyll!="fyllKylling" && fyll!="fyllPepperoni") {
+                if (fyll!="fyllTaco" && fyll!="fyllKylling" && fyll!="fyllPepperoni" && fyll!="fyllAnanas") {
                     infoDiv += '<li>fyll</li>';
+                    console.log(infoDiv);
+                    updateView();
                     
                 }
                 if (pizzasize!="stor" && pizzasize!="middels" && pizzasize!="liten") {
                     infoDiv += '<li>størrelse</li>';
+                    console.log(infoDiv);
+                    updateView();
                     
                 }
+                if (rundhetvar!="rund" && rundhetvar!="firkantet"){
+                    infoDiv += '<li>rundhet</li>';
+                    updateView();
+                }
+                updateView();
             }
             updateView();
         }
