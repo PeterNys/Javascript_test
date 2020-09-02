@@ -1,0 +1,30 @@
+#app{
+    text-align: center;
+}
+
+.navn {
+    
+}
+*{
+    background-color:lightblue;
+}
+.adjektiv {
+
+}
+
+p{
+    padding: 5px;
+    font-size: 25x;
+    border: 2px solid black;
+    background-color: yellow;
+    display: inline-block;
+
+}
+
+.verb {
+
+}
+.story{
+    font-size: 60px;
+}
+

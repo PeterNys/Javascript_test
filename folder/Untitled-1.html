@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="adjektivoppgave.css">
+</head>
+<body>
+
+<div id="app"></div>
+<!--BRB-->
+
+<script>
+//model
+let navn='        ';
+let adjektiv='         ';
+let verb='        ';
+
+//view
+updateView();
+function updateView(){ 
+    document.getElementById('app').innerHTML = `
+    <h1>Le Story!</h1>
+    <div class="story"> ${navn} satte seg forran pcn for å ${adjektiv}, 
+          hadde jobbet ${verb} med <del>*Blank*</del> sin. </div>
+<hr/>
+        <div class="navn">
+            <p onclick="navnFunction(this)">Geir</p>
+            <p onclick="navnFunction(this)">Therese</p>
+            <p onclick="navnFunction(this)">Terje</p>
+            <p onclick="navnFunction(this)">Linn</p>
+        </div>
+<hr/>
+        <div class="verb">
+            <p onclick="verbFunction(this)">Hoppet</p>
+            <p onclick="verbFunction(this)>slå</p>
+            <p>gikk </p>
+            <p>Sparket</p>
+        </div>
+<hr/>
+        <div class="adjektiv">
+            <p>Lille</p>
+            <p>Store</p>
+            <p>Rare</p>
+            <p>Fjollette</p>
+        </div>
+    
+
+    `;
+}
+
+//Controller
+
+
+
+function navnFunction(txt){
+    navn=txt.innerHTML;
+    updateView();
+}
+
+</script>
