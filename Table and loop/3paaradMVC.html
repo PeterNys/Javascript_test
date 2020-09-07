@@ -32,6 +32,12 @@
             div.colorx {
                 color: green;
             }
+            .victoryScreen{
+                color:black;
+                background-color: red;
+                clear:left;
+                font-size:200px;
+            }
     </style>
 </head>
 <body>
@@ -43,6 +49,9 @@
 
         // model
         let board = ['', '', '', '', '', '', '', '', ''];
+        let winstates = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        let weWon='';
+        
 
         // view
         show();
@@ -52,27 +61,48 @@
                 let first = i % 3 == 0 ? 'first' : '';
                 html += `<div onclick="setX(${i})" class="cell color${board[i]} ${first}">${board[i]}</div>`;
             }
+            if (weWon=='x') {html += '<div class="victoryScreen" style="background-color:blue"> You won </div>'};
+            if (weWon=='o') {html += '<div class="victoryScreen"> They won </div>'};
+            if (weWon!='') {html += '<button onclick="resetButton()" style="font-size:50px;">Reset</button>'};
             boardDiv.innerHTML = html;
         }
 
         // controller
         function setX(index) {
-            console.log(index);
+            if (weWon!=''){return;}
             if (board[index] === '') {
                 board[index] = 'x';
+                checkWinning();
                 setO();
             }
+            
             show();
         }
 
         function setO() {
+            if (weWon!=''){return;}
             let blankIndexes = Array.from(board.keys()).filter(i => board[i] === '');
             if (blankIndexes.length === 0) return;
             let random = Math.floor(Math.random() * blankIndexes.length);
             let blankIndex = blankIndexes[random];
             board[blankIndex] = 'o';
+            checkWinning();
             show();
         }
+        function checkWinning(){
+            for (let i = 0; i < (winstates.length); i++){
+                    if (board[winstates[i][0]]!='' && board[winstates[i][0]] == board[winstates[i][1]] && board[winstates[i][0]] == board[winstates[i][2]]){
+                        weWon=board[winstates[i][1]];
+                        return;
+                    }
+            }
+        }
+        function resetButton(){
+            board = ['', '', '', '', '', '', '', '', '']
+            weWon = '';
+            show();
+        }
+        
     </script>
 </body>
 </html>
