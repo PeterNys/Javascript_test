@@ -40,6 +40,7 @@
        
         var divs1 = [];
         var divs2 = [];
+        var board = ['','','','','','','','',''];
         
         // var divs1 = document.getElementsByTagName('div');
         // var divs2 = new Array();
@@ -72,7 +73,7 @@
 
         function setX(divElement,elementIndex) {
             if (divElement.innerHTML !== 'x' && divElement.innerHTML !== 'o') {
-                divElement.innerHTML = 'x';
+                divs1[elementIndex].innerHTML = 'x';
                 
                 
 
