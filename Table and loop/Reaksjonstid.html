@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Søke Start IT</title>
+    <style>
+        body{
+            background-color:black;
+        }
+        .lamp{
+            background-color:beige;
+            border-radius:50%;
+            width:100px;
+            height:100px;
+            float:left;
+        }
+        .førstPåLinja{
+            clear:left;
+        }
+        .lightOn{
+            background-color:yellow;
+
+        }
+        .what{
+            font-size:200px;
+            color:white;
+        }
+        .average{
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+<script>
+// model
+let selectedLampIndex;
+let startTime;
+let finisheTime;
+let spentSeconds;
+let totalTime=0;
+let count=0;
+let average=0;
+// view
+randomLamp();
+updateView();
+function updateView(){
+    let html=''
+    for (let i=0;i<25;i++){
+        let firstInRow = i % 5 == 0 ? 'førstPåLinja':'';
+        if (i==selectedLampIndex){
+        html+=`
+        <div class="lamp lightOn ${firstInRow}" onclick="randomLamp()"></div> 
+        `
+        continue;
+        }
+        html+= `
+        <div class="lamp ${firstInRow}"></div>
+        
+        `
+
+    }
+    html += `<div class="what">${spentSeconds}</div><div class="average">${average}</div>`
+    document.getElementById("app").innerHTML=html;
+
+}
+
+
+// controller
+
+function randomLamp(){
+    finishTime = new Date().getTime();
+    let spentMilliseconds = Math.floor(finishTime-startTime);
+    spentSeconds=spentMilliseconds/1000;
+    totalTime= totalTime+spentSeconds;
+    count= count+1;
+    average=totalTime/count;
+    startTime = new Date().getTime();
+    selectedLampIndex=Math.floor(Math.random()*25);
+    updateView();
+}
+
+
+</script>
+
+
+</body>
+</html>

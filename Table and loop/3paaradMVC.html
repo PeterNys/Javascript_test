@@ -63,6 +63,7 @@
             }
             if (weWon=='x') {html += '<div class="victoryScreen" style="background-color:blue"> You won </div>'};
             if (weWon=='o') {html += '<div class="victoryScreen"> They won </div>'};
+            if (weWon=='draw') {html += '<div class="victoryScreen" style="background-color:grey"> Draw </div>'}
             if (weWon!='') {html += '<button onclick="resetButton()" style="font-size:50px;">Reset</button>'};
             boardDiv.innerHTML = html;
         }
@@ -93,7 +94,12 @@
             for (let i = 0; i < (winstates.length); i++){
                     if (board[winstates[i][0]]!='' && board[winstates[i][0]] == board[winstates[i][1]] && board[winstates[i][0]] == board[winstates[i][2]]){
                         weWon=board[winstates[i][1]];
-                        return;
+                    }
+                    for(let i2 = 0; weWon==''&& board[i2]!='' && i2 < board.length; i2++){
+                        console.log(i2);
+                        if (i2==8){
+                            weWon='draw'
+                            }
                     }
             }
         }

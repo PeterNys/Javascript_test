@@ -50,7 +50,7 @@
         // controller
             function myFunction(thisDiv,indexNumber){
                 console.log(parArray[indexNumber]);
-                for(i=0;i<parArray[indexNumber].length;i++){
+                for(let i=0;i<parArray[indexNumber].length;i++){
                     console.log(board[parArray[indexNumber][i]]);
                     if(board[parArray[indexNumber][i]]==''){
                     board[parArray[indexNumber][i]]=board[indexNumber];
