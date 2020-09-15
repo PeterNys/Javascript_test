@@ -8,7 +8,8 @@
     // model
     let numbers = [7, 3, 1, 5, 8];
     let chosenBar; // Variabel for hvilken stolpe som er valgt
-    let inputValue; // Variabel for hva som er skrevet i input-feltet
+    let inputValue=0; // Variabel for hva som er skrevet i input-feltet
+    let disableVar="disabled";
     // view
     show();
     function show() {
@@ -27,10 +28,10 @@
             Valgt stolpe: <i>${chosenBar+1}</i>
             <br />
             Verdi:
-            <input type="number" min="1" max="10" oninput="inputValue = this.value" />
-            <button>Legg til stolpe</button>
-            <button disabled>Endre valgt stolpe</button><br />
-            <button disabled>Fjerne valgt stolpe</button>
+            <input type="number" min="1" max="10" value="${inputValue}" oninput="inputValue = this.value" />
+            <button onclick="addStolpe()">Legg til stolpe</button>
+            <button onclick="changeStolpe(this)" ${disableVar}>Endre valgt stolpe</button><br />
+            <button onclick="removeStolpe()" ${disableVar}>Fjerne valgt stolpe</button>
             `;
     }
 
@@ -41,7 +42,7 @@
         let height = number * 10;
         let y = 60 - height;
         let color = calcColor(1, 10, barNo);
-        return `<rect stroke="${borderVar}" onclick="myFunction(this, ${iPar})" width="${width}" height="${height}"
+        return `<rect stroke="${borderVar}" onclick="selectStolpe(${iPar})" width="${width}" height="${height}"
                             x="${x}" y="${y}" fill="${color}"></rect>`;
     }
 
@@ -52,14 +53,38 @@
         return colString;
     }
 
-    function myFunction(thisPar, indexPar){
+
+    // controller (noenting her ennå)
+    function selectStolpe(indexPar){
         if (chosenBar==indexPar){
             chosenBar=undefined;
+            disableVar='disabled';
             show();
             return;}
         chosenBar = indexPar;
+        inputValue = numbers[chosenBar];
+        disableVar = '';
         show();
 
     }
-    // controller (ingenting her ennå)
+    function removeStolpe(){
+        numbers.splice(chosenBar,1);
+        show();
+    }
+    function changeStolpe(thisPar){
+        if (inputValue>10||inputValue<1){
+           alert("You can only change from 1 to 10");
+            return;
+            
+        }
+        numbers[chosenBar]=inputValue;
+        show();
+    }
+    function addStolpe(){
+        if (inputValue>10||inputValue<1){
+            return alert("You can only change from 1 to 10");
+        }
+        numbers.push(inputValue);
+        show();
+    }
 </script>
