@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano</title>
+    <link rel="stylesheet" type="text/css" href="musikk.css" />
+</head>
+<body>
+
+
+    <div id="app"></div>
+
+
+
+
+
+
+<script>
+
+// model
+// let fileArray = ["ufo.mp3","bubbles.mp3",'clay.mp3','confetti.mp3','glimmer.mp3','moon.mp3']
+let fileArray = ["komGut.mp3","komBlaane.mp3","komJente.mp3"]
+let screenHeight = 900;
+let boxNumber = '';
+
+// view
+updateView();
+function updateView(){
+  let html='';
+  if (boxNumber > 0&&boxNumber<10000) {
+    for (i=0; i<boxNumber; i++){
+    html+=`<div onclick = "myMove(this), playAudio(fileArray[randomNumber(fileArray.length)])" class ="button " style="width:100px;height:100px;background-color: rgb(223, 50, 79);"></div>`
+  }
+  console.log(html);
+  }
+  else{html=`<input type="number" onchange="setBoxNumber(this)">`;}
+
+  document.getElementById("app").innerHTML=html;
+  
+
+}
+
+
+// controller
+
+
+function myMove(elementID) {
+  var elem = elementID;   
+  var posX = 0;
+  var posY = 0;
+  let randomLimit= randomNumber(1000);
+  var id = setInterval(frame, 5);
+  let Yspeed = 2;
+  let Xspeed = 10;
+  
+  function frame() {
+    
+   
+      if (posY>screenHeight||posY<0){
+        playAudio(fileArray[randomNumber(fileArray.length)])
+        Yspeed= -Yspeed;
+        }
+      if (posX>screenWidth||posX<0){
+        playAudio(fileArray[randomNumber(fileArray.length)])
+        Xspeed= -Xspeed;
+      }
+     
+      posY=posY+Yspeed;
+      posX=posX+Xspeed;
+      elem.style.top = posY + "px"; 
+      elem.style.left = posX + "px";
+       
+    }
+  }
+
+
+function randomNumber(x){
+  return Math.floor((Math.random() *x) );
+}
+function playAudio(filename){
+  var audio = new Audio(`${filename}`);
+  audio.play();
+}
+
+function setBoxNumber(thisPar){
+  boxNumber=thisPar.value;
+  console.log("works")
+  updateView();
+} 
+</script>
+
+
+
+    
+</body>
+</html>

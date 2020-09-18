@@ -6,7 +6,6 @@ function selectStolpe(indexPar){
         show();
         return;}
     chosenBar = indexPar;
-    console.log("fungerer",chosenBar);
     inputValue = numbers[chosenBar];
     disableVar = '';
     show();
@@ -18,7 +17,7 @@ function removeStolpe(){
 }
 function changeStolpe(thisPar){
     if (inputValue>10||inputValue<1){
-       alert("You can only change from 1 to 10");
+       console.log("You can only change from 1 to 10");
         return;
         
     }
@@ -27,8 +26,9 @@ function changeStolpe(thisPar){
 }
 function addStolpe(){
     if (inputValue>10||inputValue<1){
-        return alert("You can only change from 1 to 10");
+        return console.log("You can only change from 1 to 10");
     }
     numbers.push(inputValue);
     show();
 }
+

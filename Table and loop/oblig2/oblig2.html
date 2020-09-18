@@ -8,8 +8,8 @@
     // model
     let numbers = [7, 3, 1, 5, 8];
     let chosenBar; // Variabel for hvilken stolpe som er valgt
-    let inputValue=0; // Variabel for hva som er skrevet i input-feltet
-    let disableVar="disabled";
+    let inputValue= 0; // Variabel for hva som er skrevet i input-feltet
+    let disableVar= "disabled";
     // view
     show();
     function show() {
@@ -22,7 +22,7 @@
             svgInnerHtml += createBar(numbers[i], i + 1,i,borderVar);
         }
         contentDiv.innerHTML = `
-            <svg id="chart" width="500" viewBox="0 0 80 60">
+            <svg id="chart" width="500" height="600"  viewBox="0 0 80 60">
                 ${svgInnerHtml}
             </svg><br/>
             Valgt stolpe: <i>${chosenBar+1}</i>
@@ -30,7 +30,7 @@
             Verdi:
             <input type="number" min="1" max="10" value="${inputValue}" oninput="inputValue = this.value" />
             <button onclick="addStolpe()">Legg til stolpe</button>
-            <button onclick="changeStolpe(this)" ${disableVar}>Endre valgt stolpe</button><br />
+            <button onclick="changeStolpe()" ${disableVar}>Endre valgt stolpe</button><br />
             <button onclick="removeStolpe()" ${disableVar}>Fjerne valgt stolpe</button>
             `;
     }
@@ -39,8 +39,8 @@
         const width = 8;
         const spacing = 2;
         let x = (barNo - 1) * (width + spacing);
-        let height = number * 10;
-        let y = 60 - height;
+        let height = number * 9;
+        let y = 80 - height;
         let color = calcColor(1, 10, barNo);
         return `<rect stroke="${borderVar}" onclick="selectStolpe(${iPar})" width="${width}" height="${height}"
                             x="${x}" y="${y}" fill="${color}"></rect>`;
@@ -71,7 +71,7 @@
         numbers.splice(chosenBar,1);
         show();
     }
-    function changeStolpe(thisPar){
+    function changeStolpe(){
         if (inputValue>10||inputValue<1){
            alert("You can only change from 1 to 10");
             return;
@@ -87,4 +87,6 @@
         numbers.push(inputValue);
         show();
     }
+
+    
 </script>
