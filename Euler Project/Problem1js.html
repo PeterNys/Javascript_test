@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body{
+           width: 1000px;
+       }
+       tr{
+        width:1000px;
+       }
+    </style>
+    <title>Document</title>
+</head>
+
+
+<body>
+    
+<div id="answer"></div>
+
+    <script>
+        // model
+        let inputNumber='';
+        let inputNumber2='';
+        let outputNumber = [];
+        let outputNumber2 = [];
+        let helpArray = [];
+
+        // view
+
+        updateView();
+        function updateView(){
+            document.getElementById('answer').innerHTML = `
+                <div>Problem 1</div>
+                <input type="number" onchange = inputNumber=this.value><button onclick="problem1()">Run</button>
+                <br><tb><tr>InputNumber: ${inputNumber}</tr></br>
+                <tr>OutputNumber: ${outputNumber}</tr></br>
+                </tb>
+                _____________________________<br>
+                <br>
+
+                <div>Problem 2</div>
+                <input type="number" onchange = inputNumber2=this.value><button onclick="problem2()">Run</button>
+                <br><tb><tr>InputNumber: ${inputNumber2}</tr></br>
+                <tr>OutputNumber:${outputNumber2}</tr></br>
+                </tb>
+                
+            `
+        }
+
+        // controller
+        function problem1(){
+            outputNumber=[];
+            for (i=1; i<=inputNumber; i++){
+                if (i % 3==0|| i%5==0){
+                    outputNumber.push(i);
+                } 
+            }
+            outputNumber=outputNumber.join(' ');
+            updateView();
+        }
+
+        function problem2(){
+            helpArray=[1];
+            let y=1;
+            for(i=2,x=1;i<4000000;i=i+x){
+                x=y;
+                helpArray.push(i);
+                y=i;
+
+                
+            }
+            for(i=0;i<helpArray.length;i++){
+                if(helpArray[i]%2==0){
+                    outputNumber2.push(helpArray[i])
+
+                }
+            }
+            outputNumber2=outputNumber2.reduce((a,b) => a+b,0);
+            
+            updateView();
+        }
+        
+
+    </script>
+
+
+</body>
+</html>
