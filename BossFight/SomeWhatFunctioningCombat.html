@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+          text-align:center;
+          
+      }
+        #app{
+            height:100vh;
+            width:100vw;
+        }
+     
+        p{
+            margin-top:0;
+            margin-bottom:0;
+        }
+        .monsterHp {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 10%;
+            background-color: rgba(239, 243, 11, 0.6);
+            position: absolute;
+            font-size:30px;
+        }
+
+        .menu {
+            height: 35%;
+            width: 13%;
+            left: 14%;
+            top: 10%;
+            
+            position: absolute;
+            border-style:solid;
+            border-color:black;
+        }
+        .menuItem{
+            height:15%;
+            margin-top:3%;
+            background-color:brown;
+            border-collapse:collapse;
+            font-size:30px;
+            
+        }
+
+        .monsterContainer {
+            height: 52%;
+            width: 32%;
+            left: 33%;
+            top: 18%;
+            position: absolute;
+            background-image: url(Dragon.png);
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+
+
+        .combatLog {
+            height: 40%;
+            width: 13%;
+            left: 77%;
+            top: 10%;
+            position: absolute;
+        }
+
+        .playerContainer1 {
+            height: 27%;
+<<<<<<< HEAD
+            width: 16.6666%;
+            left: 25%;
+=======
+            width: 15%;
+            left: 26%;
+            top: 58%;
+            background-color: rgba(84, 11, 243, 0.6);
+            position: absolute;
+            
+           
+        }        
+        
+        .playerContainer2 {
+            height: 27%;
+            width: 15%;
+            left: 42%;
+            top: 58%;
+            background-color: rgba(84, 11, 243, 0.6);
+            position: absolute;
+            
+           
+        }
+
+        .playerContainer3 {
+            height: 27%;
+            width: 15%;
+            left: 58%;
+>>>>>>> ec5acf98913d6abaeb65b85b3583c86b513c53c1
+            top: 58%;
+            background-color: rgba(84, 11, 243, 0.6);
+            position: absolute;
+            
+           
+        }
+        .playerContainer2{
+            height: 27%;
+            width: 16.666666%;
+            left: 41.66666%;
+            top: 58%;
+            background-color: yellow;
+            position: absolute;
+
+        }
+        .playerContainer3{
+            height: 27%;
+            width: 16.66666%;
+            left: 58.32%;
+            top: 58%;
+            background-color: rgba(84, 11, 243, 0.6);
+            position: absolute;
+
+        }
+
+
+        .playerHp {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 87%;
+            background-color: rgba(239, 243, 11, 0.6);
+            position: absolute;
+            font-size:30px;
+        }
+
+        .healthBar {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 93%;
+            background-color: red;
+            position: absolute;
+        }
+        .healthBar2{
+            height: 5%;
+            width: 11%;
+            left: 26%;
+            top: 93%;
+            background-color: red;
+            position: absolute;
+
+        }
+        .healthBar3{
+            height: 5%;
+            width: 11%;
+            left: 63%;
+            top: 93%;
+            background-color: red;
+            position: absolute;
+        }
+        .monsterHealthBar{
+            height: 4%;
+            width: 11%;
+            left: 44%;
+            top:4%;
+            background-color: red;
+            position: absolute;
+            border-style:solid;
+            border-color:black;
+            border-width:3px;
+        }
+        .health{
+            height:100%;
+            width:50%;
+            background-color:green;
+        }
+        .health2{
+            height:100%;
+            background-color:green;
+        }    
+        .health3{
+            height:100%;
+            background-color:green;
+        }
+        .healthMonster{
+            height:100%;
+            background-color:green;
+        }    
+
+
+
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+
+
+
+
+    <script>
+        
+        // model
+        // IDs (prefabs)?
+
+        let playerID={
+                Peter:{name:'Peter',playerHp:150,playerAtk:50,critChance:1,critModifier:100,stunned:false,attacks:{atk1:{name:"Stab"},atk2:{name:"Stabbystab"},atk3:{name:"Potion"}}},
+                Mira:{name:'Mira',playerHp:150,playerAtk:100,critChance:50,critModifier:1.5,stunned:false,attacks:{atk1:{name:"Slash"},atk2:{name:"Shield Bash"},atk3:{name:"Potion"}}},
+                Elise:{name:'Elise',playerHp:150,playerAtk:75,critChance:25,critModifier:2,stunned:false,attacks:{atk1:{name:"Strike"},atk2:{name:"Magic missile"},atk3:{name:"Potion"}}}
+                };
+        let playerState={
+                Peter:{name:'Peter',playerHp:150,playerAtk:50,critChance:1,critModifier:100,stunned:false,attacks:{atk1:{name:"Stab"},atk2:{name:"Stabbystab"},atk3:{name:"Potion"}}},
+                Mira:{name:'Mira',playerHp:150,playerAtk:100,critChance:50,critModifier:1.5,stunned:false,attacks:{atk1:{name:"Slash"},atk2:{name:"Shield Bash"},atk3:{name:"Potion"}}},
+                Elise:{name:'Elise',playerHp:150,playerAtk:75,critChance:25,critModifier:2,stunned:false,attacks:{atk1:{name:"Strike"},atk2:{name:"Magic missile"},atk3:{name:"Potion"}}}
+
+        }
+        
+        let monsterID={
+                Terje:{name:'Terje',monsterHp:200,monsterAtk:20,stunned:false},
+                Bjørn:{name:'Bjørn',monsterHp:250,monsterAtk:10,stunned:false},
+                Drage:{name:'Drage',monsterHp:500,monsterAtk:30,stunned:false},
+                    };
+        
+        
+
+        // other variables
+                let backgroundImage=''
+                let resultVar='';
+                let currentMonster=monsterID.Drage;
+                let currentPlayer=playerState.Mira;
+                let combatLog=['','','','','','','','','','','','','','','',];
+
+
+        // combat variables
+        
+                let peterHp=playerID.Peter.playerHp;
+                let miraHp=playerID.Mira.playerHp;
+                let eliseHp=playerID.Elise.playerHp;
+                let monsterHp=monsterID.Drage.monsterHp;
+                let playerAtk=20;
+                let monsterAtk=monsterID.Drage.monsterAtk;
+                let playerAtkMultiplier=25; //0 to playerAtkMultipler percent increased player damage
+                let monsterAtkMultipler=25; // same deal here but for monsters
+                
+        
+                let hpPercentMira;
+                let hpPercentPeter;
+                let hpPercentElise;
+                let hpPercentMonster;
+
+       
+        // view
+
+        updateView();
+        function updateView(){
+            
+            let html='';
+            let combatLogHtml='';
+            
+            for(i=15;i>=1; i--){
+                combatLogHtml += `${combatLog[combatLog.length-i]}</br>`
+            }
+
+            let menuContent='';
+            menuContent+=`
+            <tb>
+            <div class="menuItem" style="font-size:50px">${currentPlayer.name}</div></br></br>
+            <div class="menuItem">${currentPlayer.attacks.atk1.name}</div>
+            <div class="menuItem">${currentPlayer.attacks.atk2.name}</div>
+            <div class="menuItem">${currentPlayer.attacks.atk3.name}</div>
+
+            `
+
+            html+=`
+            <div class="item0"></div>
+            <div class="monsterHp">${monsterHp}</div>
+            <div class="menu">${menuContent}</div>
+            <div class="monsterContainer"></div>
+
+            <div class="combatLog">${combatLogHtml}
+            </div>
+<<<<<<< HEAD
+            <div onclick="characterSelection(1) " class="playerContainer1"></div>
+            <div onclick="characterSelection(2)" class="playerContainer2"></div>
+            <div onclick="characterSelection(3) " class="playerContainer3"></div>
+=======
+            <div onclick="combat()" class="playerContainer1"></div>
+            <div onclick="combat()" class="playerContainer2"></div>
+            <div onclick="combat()" class="playerContainer3"></div>
+>>>>>>> ec5acf98913d6abaeb65b85b3583c86b513c53c1
+            <div class="item6"></div>
+            <div class="playerHp">HP:${playerState.Peter.playerHp+playerState.Mira.playerHp+playerState.Elise.playerHp}</div>
+            <div class="healthBar"><div style="width:${healthBarPercentage(playerState.Peter.playerHp,playerID.Peter.playerHp)}%" class="health"></div></div>
+            <div class="healthBar2"><div style="width:${healthBarPercentage(playerState.Mira.playerHp,playerID.Peter.playerHp)}%" class="health2"></div></div>
+            <div class="healthBar3"><div style="width:${healthBarPercentage(playerState.Elise.playerHp,playerID.Peter.playerHp)}%" class="health3"></div></div>
+            <div class="monsterHealthBar"><div style="width:${hpPercentMonster}%" class="healthMonster"></div></div>
+            
+            `;
+            
+            
+            document.getElementById("app").innerHTML = html;
+        }
+
+        
+       
+
+        // controller
+        function characterSelection(characterSelectPar){                                     // selects currentPlayer based on what div you click as long as player is not dead
+            if (characterSelectPar==1&&playerState.Peter.playerHp>0){
+            currentPlayer=playerState.Peter;}
+            if (characterSelectPar==2&&playerState.Mira.playerHp>0){
+            currentPlayer=playerState.Mira;}
+            if (characterSelectPar==3&&playerState.Elise.playerHp>0){
+            currentPlayer=playerState.Elise;}
+
+            updateView();
+        }
+
+        function combat(){
+            playerCombat();
+            monsterCombat();
+            updateView();
+
+        }
+        function playerCombat(currentplayerpar){
+            
+            if (monsterHp<=0||currentPlayer.stunned||currentPlayer.playerHp<=0){return;};
+
+            let currentMonsterHp=monsterHp;
+            let randomNumberCrit= randomNumber(100);
+            let critmodifier=1;
+            if(randomNumberCrit<currentPlayer.critChance){critmodifier=currentPlayer.critModifier}
+            monsterHp=monsterHp-Math.floor(critmodifier*currentPlayer.playerAtk*(1+(0.01*randomNumber(playerAtkMultiplier))));
+            let damageVar= currentMonsterHp-monsterHp;
+            if(critmodifier!=1){
+            combatLog.push(`<b>${currentMonster.name} took ${damageVar} critical damage!</b>`);
+            }
+            else{combatLog.push(`${currentMonster.name} took ${damageVar} damage`);}
+            
+            hpPercentMonster=healthBarPercentage(monsterHp,currentMonster.monsterHp); 
+           
+            checkWinState();
+        }
+
+        
+        function monsterCombat(){
+            if (monsterHp<=0||currentMonster.stunned){return;};
+            randomCurrentplayer();
+            let currentPlayerHp=currentPlayer.playerHp;
+            currentPlayer.playerHp=currentPlayer.playerHp-Math.floor(monsterAtk*(1+(0.01*randomNumber(monsterAtkMultipler))));
+            combatLog.push(`${currentPlayer.name} took ${currentPlayerHp-currentPlayer.playerHp} damage</br>____________`);
+            checkWinState();
+            
+        }
+        function checkWinState(){
+            if(peterHp<=0&&miraHp<=0&&eliseHp<=0){
+                combatLog.push('<b>You all died.</b>');
+            }
+            if(monsterHp<=0){
+                combatLog.push(`<b>You killed ${currentMonster.name}!</b>`);
+            }
+            updateView();
+        }
+        function randomNumber(x){
+            return Math.floor(Math.random()*x)
+        }
+        function healthBarPercentage(smallNumber,largeNumber){
+            let returnValue;
+            returnValue= smallNumber/largeNumber*100;
+            if (returnValue<0){return 0};
+            return returnValue;
+        }
+        function randomCurrentplayer(){
+            let randomizerArray= [];
+            if(playerState.Peter.playerHp>0){
+                randomizerArray.push(playerState.Peter);
+            }
+            if(playerState.Mira.playerHp>0){
+                randomizerArray.push(playerState.Mira);
+            }
+            if(playerState.Elise.playerHp>0){
+                randomizerArray.push(playerState.Elise);
+            }
+            currentPlayer= randomizerArray[randomNumber(randomizerArray.length)];
+        }
+    </script>
+</body>
+</html>

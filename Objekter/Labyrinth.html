@@ -49,6 +49,11 @@ td.low {
     
     <script>
         // model
+    let mazeModel2= {
+        size: 2,
+        rows:[]
+        };
+
     var mazeModel = {
         size: 2,
         rows: [
@@ -91,21 +96,43 @@ td.low {
     };
 
     // view
-    updateView();
-    function updateView(){
-    let html=``;
+    initModel();
+    // updateView();
+    // function updateView(){
+    // let html='';
+    // let labyrinth='';    
+    //  for(i=0;i<mazeModel.rows.length;i++){
+    //     if(i>0){labyrinth+=`</tr>`};
+    //     for(i2=0;i2<mazeModel.rows[i].length;i2++){
+    //         let labClasslist='<td class="';
+    //         mazeModel.rows[i][i2].isHigh ? labClasslist+=' high':labClasslist+=' low';
+    //         mazeModel.rows[i][i2].isWide ? labClasslist+=' wide':labClasslist+=' small';
+    //         mazeModel.rows[i][i2].isOpen == undefined ? labClasslist+=' room">': mazeModel.rows[i][i2].isOpen ? labClasslist+=' noWall"': labClasslist+=' wall">';
+    //         labyrinth+=`${labClasslist} </td>`;
+    //     }
+    //  }
+    //  html=`
+    //     <table>
+    //     ${labyrinth}
+    //     </table>
+    //     `;
+    // document.getElementById("app").innerHTML=html;
+    //  }
+
+    initModel(20);
+     updateView2();
+    function updateView2(){
+    let html='';
     let labyrinth='';    
-     for(i=0;i<mazeModel.rows.length;i++){
-        if(i>0){labyrinth+=`</tr>`}
-        for(i2=0;i2<mazeModel.rows[i].length;i2++){
-            let labClasslist='<td class="';
-            mazeModel.rows[i][i2].isHigh ? labClasslist+=` high`:labClasslist+=` low`;
-            mazeModel.rows[i][i2].isWide ? labClasslist+=` wide`:labClasslist+=` small`;
-            mazeModel.rows[i][i2].isOpen == undefined ? labClasslist+=` room"`: mazeModel.rows[i][i2].isOpen ? labClasslist+=` noWall"`: labClasslist+=` wall"`;
-            labyrinth+=`${labClasslist} </td>`
-
+     for(i=0;i<mazeModel2.rows.length;i++){
+        if(i>0){labyrinth+=`</tr>`};
+        for(i2=0;i2<mazeModel2.rows[i].length;i2++){
+            let labClasslist=`<td onclick="changeWall(${i},${i2})" class="`;
+            mazeModel2.rows[i][i2].isHigh ? labClasslist+=' high':labClasslist+=' low';
+            mazeModel2.rows[i][i2].isWide ? labClasslist+=' wide':labClasslist+=' small';
+            mazeModel2.rows[i][i2].isOpen == undefined ? labClasslist+=' room">': mazeModel2.rows[i][i2].isOpen ? labClasslist+=' noWall"': labClasslist+=' wall">';
+            labyrinth+=`${labClasslist} </td>`;
         }
-
      }
      html=`
         <table>
@@ -114,10 +141,46 @@ td.low {
         `;
     document.getElementById("app").innerHTML=html;
      }
-    
-    
 
+    
+    function initModel(LabyrinthSize){
+    let randomEntrance=randomNumber(LabyrinthSize)*2+1;
+    let randomOutrance=randomNumber(LabyrinthSize)*2+1;
+    let randomEntrancewall=Math.random()<0.5 ? true:false;
+    for(i=0;i<LabyrinthSize*2+1;i++){
+        const row = [];
+        for (i2=0;i2<LabyrinthSize*2+1;i2++){
+        const position = {};
+        i%2==0 ? position.isHigh=false:position.isHigh=true;
+        i2%2==0 ? position.isWide=false:position.isWide=true;
+        if(i%2==0||i2%2==0){randomNumber(2)==1 ? position.isOpen=true:position.isOpen=false};
+        if(i==0||i==LabyrinthSize*2||i2==0||i2==LabyrinthSize*2){position.isOpen=false};
+        if(i%2==0&&i2%2==0){position.isOpen=false};
+        if (randomEntrancewall){if(i==0&&i2==randomEntrance){position.isOpen=true}if(i==LabyrinthSize*2&&i2==randomOutrance){position.isOpen=true}};
+        if (!randomEntrancewall){if(i==randomEntrance&&i2==0){position.isOpen=true}if(i==randomOutrance&&i2==LabyrinthSize*2){position.isOpen=true}};
+        row.push(position);
+            }
+        mazeModel2.rows.push(row);
+        }
+
+    }
+    
     // controller
+    function randomNumber(x){
+        return Math.floor( Math.random()*x)
+    }
+    function changeWall(row,column){
+        if(mazeModel2.rows[row][column].isOpen!=undefined){
+        if(row%2==1||column%2==1){
+        mazeModel2.rows[row][column].isOpen=!mazeModel2.rows[row][column].isOpen;
+        }
+        }
+        
+        updateView2();
+    }
+    function randomEntrance(LabyrinthSize){
+        
+    }
 </script>
 
 </body>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       div {
+            position: absolute;
+        }
+        #app{
+            height:100vh;
+            width:100vw;
+        }
+        .item0 {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 4%;
+            background-color: rgba(239, 243, 11, 0.6);
+
+        }
+
+        .item1 {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 10%;
+            background-color: rgba(239, 243, 11, 0.6);
+
+        }
+
+        .item2 {
+            height: 45%;
+            width: 13%;
+            left: 14%;
+            top: 10%;
+            background-color: rgb(190, 186, 235);
+
+        }
+        
+        .item3 {
+            height: 40%;
+            width: 23%;
+            left: 38%;
+            top: 17%;
+            background-color: rgba(228, 9, 9, 0.6);
+
+        }
+
+        .item4 {
+            height: 40%;
+            width: 13%;
+            left: 70%;
+            top: 15%;
+            background-color: rgba(216, 11, 243, 0.6);
+
+        }
+
+        .item5 {
+            height: 27%;
+            width: 50%;
+            left: 25%;
+            top: 58%;
+            background-color: rgba(84, 11, 243, 0.6);
+
+        }
+
+        .item7 {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 87%;
+            background-color: rgba(239, 243, 11, 0.6);
+
+        }
+
+        .item8 {
+            height: 5%;
+            width: 11%;
+            left: 44%;
+            top: 93%;
+            background-color: rgba(239, 243, 11, 0.6);
+
+        }
+        
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+
+
+
+
+    <script>
+        
+        // model
+
+        // combat variables
+        
+        let playerHp;
+        let monsterHp=200;
+        let playerAtk=20;
+        let monsterAtk;
+        
+        // other variables
+        let resultVar='';
+        let monsterID='Terje';
+        let combatLog=[];
+        // view
+
+        updateView();
+        function updateView(){
+            let html=''
+            html+=`
+            <div class="item0"></div>
+            <div class="item1"></div>
+            <div class="item2"></div>
+            <div class="item3"></div>
+            <div class="item4"></div>
+            <div class="item5"></div>
+            <div class="item6"></div>
+            <div class="item7"></div>
+            <div class="item8"></div>
+            
+            `;
+            
+            
+            document.getElementById("app").innerHTML = html;
+        }
+
+        
+
+
+        // controller
+        
+        function playerCombat(){
+            let currentMonsterHp=monsterHp;
+            monsterHp=monsterHp-Math.floor(playerAtk*(1+(0.01*randomNumber(25))));
+            combatLog.push(`${monsterID} took ${currentMonsterHp-monsterHp} damage`)
+            checkWinState();
+
+        }
+        function checkWinState(){
+            if(playerHp==0){
+                ResultVar='You died';
+            }
+            if(monsterHp==0){
+                ResultVar='You win!'
+            }
+        }
+        function randomNumber(x){
+            return Math.floor(Math.random()*x)
+        }
+
+
+    </script>
+</body>
+</html>
